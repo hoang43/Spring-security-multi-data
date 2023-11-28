@@ -1,0 +1,41 @@
+server:
+  port: 8370
+datasource:
+  postgresql:
+    url: jdbc:postgresql://localhost:5432/vinnet1
+    className: org.postgresql.Driver
+    username: postgres
+    password: postgres
+    dialect: org.hibernate.dialect.PostgreSQLDialect
+    showSql: true
+
+datasource2:
+  postgresql:
+    url: jdbc:postgresql://localhost:5432/vinnet2
+    className: org.postgresql.Driver
+    username: postgres
+    password: postgres
+    dialect: org.hibernate.dialect.PostgreSQLDialect
+    showSql: true
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+  activemq:
+    broker-url:
+  flyway:
+    enabled: true
+    sql-migration-prefix: V
+    validate-on-migrate: false
+    locations: classpath:migration
+    baseline-on-migrate: true
+    placeholderReplacement: false
+    baseline-version: 0.0.0
+    postgres:
+    advisoryLockRetryInterval: 10000ms
+
+security:
+  white_list: /api/auth/register,/api/auth/login,/api/products/**
